@@ -10,7 +10,11 @@ class OptionModal extends React.Component {
 
   render() {
     return (
-      <Modal isOpen={!!this.props.selectedOption} contentLabel="Selected Option">
+      <Modal
+        isOpen={!!this.props.selectedOption}
+        contentLabel="Selected Option"
+        onRequestClose={this.props.handleClearSelectedOption}
+      >
         <h3>OptionModal</h3>
         {this.props.selectedOption && <p>{this.props.selectedOption}</p>}
         <button onClick={this.props.handleClearSelectedOption}>Okay</button>
