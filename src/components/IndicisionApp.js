@@ -9,7 +9,8 @@ import OptionModal from './OptionModal';
 class IndicisionApp extends React.Component {
   static defaultProps = {
     options: [],
-    selectedOption: undefined
+    selectedOption: undefined,
+    appElementId: 'app'
   };
   state = {
     options: this.props.options,
@@ -87,6 +88,7 @@ class IndicisionApp extends React.Component {
         <OptionModal
           selectedOption={this.state.selectedOption}
           handleClearSelectedOption={this.handleClearSelectedOption}
+          appElementId={this.props.appElementId}
         />
       </div>
     );

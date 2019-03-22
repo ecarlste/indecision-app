@@ -2,6 +2,12 @@ import React from 'react';
 import Modal from 'react-modal';
 
 class OptionModal extends React.Component {
+  componentWillMount() {
+    if (this.props.appElementId) {
+      Modal.setAppElement(`#${this.props.appElementId}`);
+    }
+  }
+
   render() {
     return (
       <Modal isOpen={!!this.props.selectedOption} contentLabel="Selected Option">
