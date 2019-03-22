@@ -4,10 +4,17 @@ import Action from './Action';
 import Header from './Header';
 import Options from './Options';
 import AddOption from './AddOption';
+import OptionModal from './OptionModal';
 
 class IndicisionApp extends React.Component {
-  static defaultProps = { options: [] };
-  state = { options: this.props.options };
+  static defaultProps = {
+    options: [],
+    selectedOption: undefined
+  };
+  state = {
+    options: this.props.options,
+    selectedOption: this.props.selectedOption
+  };
 
   handleDeleteOptions = () => {
     this.setState(() => ({ options: [] }));
@@ -21,8 +28,9 @@ class IndicisionApp extends React.Component {
 
   handlePick = () => {
     const optionNumber = Math.floor(Math.random() * this.state.options.length);
+    const selectedOption = this.state.options[optionNumber];
 
-    alert(this.state.options[optionNumber]);
+    this.setState(() => ({ selectedOption }));
   };
 
   handleAddOption = option => {
@@ -37,6 +45,10 @@ class IndicisionApp extends React.Component {
     this.setState(prevState => ({
       options: [...prevState.options, option]
     }));
+  };
+
+  handleClearSelectedOption = () => {
+    this.setState(() => ({ selectedOption: this.props.selectedOption }));
   };
 
   componentDidMount() {
@@ -72,6 +84,10 @@ class IndicisionApp extends React.Component {
           handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption onAddOption={this.handleAddOption} />
+        <OptionModal
+          selectedOption={this.state.selectedOption}
+          handleClearSelectedOption={this.handleClearSelectedOption}
+        />
       </div>
     );
   }
