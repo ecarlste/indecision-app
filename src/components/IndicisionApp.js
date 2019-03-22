@@ -9,23 +9,23 @@ class IndicisionApp extends React.Component {
   static defaultProps = { options: [] };
   state = { options: this.props.options };
 
-  handleDeleteOptions() {
+  handleDeleteOptions = () => {
     this.setState(() => ({ options: [] }));
-  }
+  };
 
-  handleDeleteOption(optionToRemove) {
+  handleDeleteOption = optionToRemove => {
     this.setState(prevState => ({
       options: prevState.options.filter(option => option !== optionToRemove)
     }));
-  }
+  };
 
-  handlePick() {
+  handlePick = () => {
     const optionNumber = Math.floor(Math.random() * this.state.options.length);
 
     alert(this.state.options[optionNumber]);
-  }
+  };
 
-  handleAddOption(option) {
+  handleAddOption = option => {
     if (!option) {
       return 'Enter valid value to add item';
     }
@@ -37,9 +37,9 @@ class IndicisionApp extends React.Component {
     this.setState(prevState => ({
       options: [...prevState.options, option]
     }));
-  }
+  };
 
-  componentDidMount = () => {
+  componentDidMount() {
     try {
       const json = localStorage.getItem('options');
       const options = JSON.parse(json);
@@ -50,28 +50,28 @@ class IndicisionApp extends React.Component {
     } catch (error) {
       console.log(error);
     }
-  };
+  }
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidUpdate(prevProps, prevState) {
     const { options } = this.state;
 
     if (prevState.options.length !== options.length) {
       const json = JSON.stringify(options);
       localStorage.setItem('options', json);
     }
-  };
+  }
 
   render() {
     return (
       <div>
         <Header subtitle="Put your life in the hands of a computer" />
-        <Action hasOptions={this.state.options.length > 0} onClick={() => this.handlePick()} />
+        <Action hasOptions={this.state.options.length > 0} onClick={this.handlePick} />
         <Options
           options={this.state.options}
-          handleDeleteOptions={() => this.handleDeleteOptions()}
-          handleDeleteOption={o => this.handleDeleteOption(o)}
+          handleDeleteOptions={this.handleDeleteOptions}
+          handleDeleteOption={this.handleDeleteOption}
         />
-        <AddOption onAddOption={o => this.handleAddOption(o)} />
+        <AddOption onAddOption={this.handleAddOption} />
       </div>
     );
   }

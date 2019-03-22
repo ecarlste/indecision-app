@@ -3,7 +3,7 @@ import React from 'react';
 class AddOption extends React.Component {
   state = { error: undefined };
 
-  handleAddOption(event) {
+  handleAddOption = event => {
     event.preventDefault();
 
     const option = event.target.elements.option.value.trim();
@@ -14,13 +14,13 @@ class AddOption extends React.Component {
     if (!error) {
       event.target.elements.option.value = '';
     }
-  }
+  };
 
   render() {
     return (
       <div>
         {this.state.error && <p>{this.state.error}</p>}
-        <form onSubmit={e => this.handleAddOption(e)}>
+        <form onSubmit={this.handleAddOption}>
           <input type="text" name="option" />
           <button>Add Option</button>
         </form>
