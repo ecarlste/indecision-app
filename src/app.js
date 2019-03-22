@@ -32,6 +32,22 @@ class IndicisionApp extends React.Component {
     }));
   }
 
+  componentDidMount = () => {
+    const json = localStorage.getItem('options');
+    const options = JSON.parse(json) || [];
+
+    this.setState(() => ({ options }));
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    const { options } = this.state;
+
+    if (prevState.options.length !== options.length) {
+      const json = JSON.stringify(options);
+      localStorage.setItem('options', json);
+    }
+  };
+
   render() {
     return (
       <div>
@@ -122,4 +138,4 @@ class AddOption extends React.Component {
   }
 }
 
-ReactDOM.render(<IndicisionApp options={['One', 'Two']} />, document.getElementById('app'));
+ReactDOM.render(<IndicisionApp />, document.getElementById('app'));
