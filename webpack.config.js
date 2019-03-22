@@ -1,9 +1,11 @@
 const path = require('path');
 
+const publicAssetPath = path.join(__dirname, 'public');
+
 module.exports = {
   entry: './src/app.js',
   output: {
-    path: path.join(__dirname, 'public'),
+    path: publicAssetPath,
     filename: 'bundle.js'
   },
   module: {
@@ -21,5 +23,8 @@ module.exports = {
       }
     ]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: publicAssetPath
+  }
 };
