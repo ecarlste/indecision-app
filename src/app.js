@@ -1,3 +1,6 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+
 class IndicisionApp extends React.Component {
   static defaultProps = { options: [] };
   state = { options: this.props.options };
