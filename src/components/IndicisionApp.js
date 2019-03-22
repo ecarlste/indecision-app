@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Action from './Action';
 import Header from './Header';
 import Options from './Options';
