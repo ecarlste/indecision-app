@@ -14,10 +14,14 @@ class OptionModal extends React.Component {
         isOpen={!!this.props.selectedOption}
         contentLabel="Selected Option"
         onRequestClose={this.props.handleClearSelectedOption}
+        closeTimeoutMS={200}
+        className="modal"
       >
-        <h3>OptionModal</h3>
-        {this.props.selectedOption && <p>{this.props.selectedOption}</p>}
-        <button onClick={this.props.handleClearSelectedOption}>Okay</button>
+        <h3 className="modal__title">OptionModal</h3>
+        {this.props.selectedOption && <p className="modal__body">{this.props.selectedOption}</p>}
+        <button className="button" onClick={this.props.handleClearSelectedOption}>
+          Okay
+        </button>
       </Modal>
     );
   }
